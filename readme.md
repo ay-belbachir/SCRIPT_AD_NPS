@@ -108,7 +108,7 @@ else {
 ```
 
 
-# Une partie du script 4 <img src="./raw.png" alt="alt text" width="50" height="whatever">
+# Une partie du script 4 
 
 ``` 
 # instructions quelque soit les choix possibles creation des utilisateur
