@@ -7,7 +7,7 @@ $grp= 'portail captif'
 
 Write-Host -ForegroundColor Green "Vérifions si les Unités d'organisation et le groupe $grp existe si non créons les"
                     
-#Vérifions si le grpoupe pour le portail catif existe existe si non créons le
+#Vérifions si le groupe pour le portail catif existe existe si non créons le
 
         if(Get-ADGroup -filter {Name -eq $grp} -ErrorAction Continue)
             {
