@@ -26,7 +26,7 @@ if([ADSI]::Exists("LDAP://$parentOU")) {
                                             }
 else {            
         Write-Host  -ForegroundColor CYAN "Departement Quantique n'existe pas, ne t'inquiète pas je m'occupe de les créer pour toi."   
-        New-ADOrganizationalUnit -Name Departement_Quantique -Path "DC=AYOUB,DC=local"
+        New-ADOrganizationalUnit -Name Departement Quantique -Path "DC=AYOUB,DC=local"
             }     
  
    if([ADSI]::Exists("LDAP://$IT")) {            

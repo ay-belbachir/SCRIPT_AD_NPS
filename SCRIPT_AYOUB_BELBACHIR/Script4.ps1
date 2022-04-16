@@ -4,8 +4,8 @@ Import-Module ActiveDirectory
 
 # On utilise le module Import-csv sur notre calc pour en faire une variable
 $ecchi = Import-csv -Delimiter ";" -Path C:\Windows\SCRIPT_AYOUB_BELBACHIR\yohoho.csv
-$OUIT = 'OU=IT,OU=FILLIALE,DC=AYOUB,DC=local'
-$SUPPORT = 'OU=SUPPORT,OU=FILLIALE,DC=AYOUB,DC=local'
+$OUIT = 'OU=IT,OU=Departement Quantique,DC=AYOUB,DC=local'
+$SUPPORT = 'OU=SUPPORT,OU=Departement Quantique,DC=AYOUB,DC=local'
 
 # Boucle foreach contenant le csv et son contenu
        foreach ($User in $ecchi)

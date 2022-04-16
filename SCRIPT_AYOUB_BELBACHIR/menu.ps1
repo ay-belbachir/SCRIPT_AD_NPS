@@ -44,7 +44,6 @@ switch ($choix) {
           PowerShell -NoExit $menups1
          }
    3{
-    Write-Host "Création Des OUs"
      $PlayWav.playsync()
 	   C:\Windows\SCRIPT_AYOUB_BELBACHIR\Script3.ps1
       Read-Host -Prompt "Appuyer sur une touche une fois la lecture terminée"
