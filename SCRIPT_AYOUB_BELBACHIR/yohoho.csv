@@ -1,5 +1,4 @@
 Prenom;Nom;Username;ID;Chemin;Password
-Utilisateur;Utilisateur1;Utilisateur-Utilisateur;500;"CN=Users,DC=AYOUB,DC=local";ITICparis30
 Ayoub;Belbachir;Ayoub-Belbachir;457;"CN=Users,DC=AYOUB,DC=local";ITICparis210
 Angelique;Barrus;Angelique-Barrus;423;"CN=Users,DC=AYOUB,DC=local";BTSsioitic92
 Etta;Schlosser;Etta-Schlosser;312;"CN=Users,DC=AYOUB,DC=local";BTSsioitic921
