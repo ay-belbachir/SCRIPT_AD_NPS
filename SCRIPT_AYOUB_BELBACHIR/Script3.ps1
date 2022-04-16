@@ -19,15 +19,7 @@ Write-Host -ForegroundColor Green "Vérifions si les Unités d'organisation et l
         New-ADGroup -Name $grp -GroupScope Global -Path "CN=Users,DC=AYOUB,DC=local"
     }
    
-   # Vérifions si les Unités d'organisation existe si non créons les
-    
-    if([ADSI]::Exists("LDAP://$parentOU")) {            
-        Write-Host  -ForegroundColor GREEN "Filliale existe"            
-                                            }
-else {            
-        Write-Host  -ForegroundColor CYAN "FILLIAL n'existe pas, ne t'inquiète pas je m'occupe de les créer pour toi."   
-        New-ADOrganizationalUnit -Name FILLIALE -Path "DC=AYOUB,DC=local"
-            }     
+   # Vérifions si les Unités d'organisation existe si non créons les    
        
 if([ADSI]::Exists("LDAP://$parentOU")) {            
         Write-Host  -ForegroundColor GREEN "Departement Quantique existe"            
