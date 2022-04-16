@@ -54,7 +54,7 @@ switch ($choix) {
    Write-Host "Création des utilisateurs et déplacements de de ceux-là selon leurs ID"
    $PlayWav.playsync()
 	C:\Windows\SCRIPT_AYOUB_BELBACHIR\Script4.ps1
-   https://gitlab.com/digi-boy1/SCRIPT/-/blob/d81b025c208c6202334182aee7dafe8744ee3a50/readme.md
+   Read-Host -Prompt "Appuyer sur une touche une fois la lecture terminée"
       Clear
       PowerShell -NoExit $menups1
             } 

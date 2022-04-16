@@ -6,7 +6,7 @@ Import-Module ActiveDirectory
 $ecchi = Import-csv -Delimiter ";" -Path C:\Windows\SCRIPT_AYOUB_BELBACHIR\yohoho.csv
 $OUIT = 'OU=IT,OU=Departement Quantique,DC=AYOUB,DC=local'
 $SUPPORT = 'OU=SUPPORT,OU=Departement Quantique,DC=AYOUB,DC=local'
-
+$grp= 'portail captif'
 # Boucle foreach contenant le csv et son contenu
        foreach ($User in $ecchi)
        {
@@ -35,7 +35,7 @@ $SUPPORT = 'OU=SUPPORT,OU=Departement Quantique,DC=AYOUB,DC=local'
 #le trie et la creation de du group pour le portail captif
        If ( $ID -le 500 )  {
               Move-ADObject -Identity  $Usercsv   -TargetPath $OUIT
-              Add-ADGroupMember -Identity portalcaptif -Members $Username
+              Add-ADGroupMember -Identity $grp -Members $Username
                      }
        If ( $ID -ge 501 ) {
               Move-ADObject -Identity  $Usercsv  -TargetPath $SUPPORT
