@@ -25,12 +25,12 @@ internet et conseiller pour le script 3, j'installe un gestionnaire de paquets p
 
 
 
-  <details><summary>↓!!!SPOILEUR MENU!!!↓</summary>
+  <details><summary>↓⬇️ SPOILEUR MENU ⬇️↓</summary>
 <img src="./spoilermenu.gif" width="whatever" height="whatever" /></details>
 
 # Une partie des script
 
-  <details><summary>↓DEVELLOPEZ MOI SVP ↓</summary>
+  <details><summary>↓⬇️ DEVELLOPEZ MOI SVP ⬇️↓</summary>
 
 # Une partie du script 1
 ```
