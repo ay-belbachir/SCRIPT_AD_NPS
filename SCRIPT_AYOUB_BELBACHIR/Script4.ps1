@@ -44,7 +44,7 @@ $grp= 'portail captif'
 
 }
 #notif
-New-BurntToastNotification -Text "Script 3 ", "execution du script 3 terminer" -AppLogo C:\Windows\SCRIPT_AYOUB_BELBACHIR\tmp.png
+New-BurntToastNotification -Text "Script 4 ", "execution du script 3 terminer" -AppLogo C:\Windows\SCRIPT_AYOUB_BELBACHIR\tmp.png
 
 
 
