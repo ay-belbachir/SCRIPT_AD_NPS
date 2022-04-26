@@ -34,10 +34,10 @@ internet et conseiller pour le script 3, j'installe un gestionnaire de paquets p
 
 ## Une partie du script 1
 ```
-Adresse ip en static
-$ip = "192.168.1.59"
+#Adresse ip en static
+$ip = "192.168.2.2"
 $prefix = "24"
-$GW = "192.168.1.1"
+$GW = "192.168.2.1"
 $DNS = "8.8.8.8"
 
 $adapter = (Get-NetAdapter).ifIndex
@@ -47,26 +47,23 @@ Set-DNSClientServerAddress –InterfaceIndex (Get-NetAdapter).InterfaceIndex –
 
 #le script demande a l'utilisateur de saisire un nom pour l'ordinateur si 'non' le pc est est nomer par default il verifie aussi si le nom par defaut ou le nom saisie est deja utiliser
 $myhost = [System.Net.Dns]::GetHostName()
-$demande = Read-Host -Prompt 'saisir saisiser le nom du pc ? o/n '
+$demande = Read-Host -Prompt 'saisir saisiser le nom du pc ? o/n n=nom par defaut AyoubAD'
 
 $defauthostn = 'AyoubAD'
-
-switch($demande){
-          o { $newhostnm = Read-Host -Prompt 'saisir un nom pour votre machine'
-          if ($myhost -eq $newhostnm) { 
 ```
 
 
 ## Le script 2
 ```
-#mon mots de passe
-$monmdpad = ConvertTo-SecureString -String "mon_mots_de_passe" -AsPlainText -Force
-    #bypass securiter pour instalation du module choco et pour burn toast module qui permet la perssonalisation des notifs
+#mon mots de passe de la forêt
+$monmdpad = ConvertTo-SecureString -String "Btssio92" -AsPlainText -Force
+    #bypass securiter pour instalation du gestionaire paquets choco et pour burn toast module qui permet la perssonalisation des notifs
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
     #instalation du module BurnToast pour perssonaliser les notif 
 choco install BurntToast-psmodule -y
-    #instalation de l'AD et de la foret
+    #instalation de l'AD, de la foret , et du dns
 Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools 
+Install-WindowsFeature DNS -IncludeManagementTools
 Install-ADDSForest  `
     -CreateDnsDelegation:$false `
     -DatabasePath "C:\Windows\NTDS" `
@@ -79,7 +76,11 @@ Install-ADDSForest  `
     -SysvolPath "C:\Windows\SYSVOL" `
     -LogPath "C:\Windows\NTDS" `
     -Force:$true
-    New-BurntToastNotification -Text "redemarage izi", "l'ordinateur redemarre tout seul dans 40s" -AppLogo C:\Windows\SCRIPT_AYOUB_BELBACHIR\tmp.png
+
+#instalation du server network policy server pour auth RADIUS 
+    Install-WindowsFeature NPAS -IncludeManagementTools
+#notif et redemarage 
+    New-BurntToastNotification -Text "redemarage", "l'ordinateur redemarre tout seul dans 40s" -AppLogo C:\Windows\SCRIPT_AYOUB_BELBACHIR\tmp.png
 Start-Sleep -s 40
  Restart-Computer -Force
 ```
@@ -90,44 +91,63 @@ Start-Sleep -s 40
 ## Une partie du script 3
 
 ```
-$parentOU = 'OU=FILLIALE,DC=AYOUB,DC=local'
+$parentOU = 'OU=Departement Quantique,DC=AYOUB,DC=local'
+$dptq = 'Departement Quantique'
+$itnom = 'IT'
+$spnom = 'SUPPORT'
+$IT       = 'OU=IT,OU=Departement Quantique,DC=AYOUB,DC=local'
+$SUPPORT = 'OU=SUPPORT,OU=Departement Quantique,DC=AYOUB,DC=local'
+$grp= 'portail captif'
 
-$IT       = 'OU=IT,OU=FILLIALE,DC=AYOUB,DC=local'
-$SUPPORT = 'OU=SUPPORT,OU=FILLIALE,DC=AYOUB,DC=local'
+Write-Host -ForegroundColor Green "Vérifions si les Unités d'organisation et le groupe $grp existe si non créons les"
+                    
+#Vérifions si le groupe pour le portail catif existe existe si non créons le
 
-Write-Host -ForegroundColor Green "Vérifions si les Unités d'organisation existe"
-
-                    # Vérifions si les Unités d'organisation existe si non créons les
-         
-if([ADSI]::Exists("LDAP://$parentOU")) {            
-        Write-Host  -ForegroundColor GREEN "Filliale existe"            
+        if(Get-ADGroup -filter {Name -eq $grp} -ErrorAction Continue)
+            {
+                Write-Host  -ForegroundColor GREEN "le groupe $grp existe "            
+            }
+ else 
+    {
+        Write-Host  -ForegroundColor CYAN "$grp n'existe pas, ne t'inquiète pas je m'occupe de les créer pour toi."   
+        New-ADGroup -Name $grp -GroupScope Global -Path "CN=Users,DC=AYOUB,DC=local"
     }
-else {            
-        Write-Host  -ForegroundColor RED "FILLIAL n'existe pas,Ne t'inquiète pas je m'occupe de les créer pour toi."   
-        New-ADOrganizationalUnit -Name FILLIALE -Path "DC=AYOUB,DC=local"
+   
+   # Vérifions si les Unités d'organisation existe si non créons les    
+       
+if([ADSI]::Exists("LDAP://$parentOU")) {            
+        Write-Host  -ForegroundColor GREEN "$dptq existe"            
+                                            }
 ```
 
 
 ## Une partie du script 4 
 
 ``` 
+# Boucle foreach contenant le csv et son contenu
+       foreach ($User in $ecchi)
+       {
+              $Username    = $User.Username
+              $Password    = $User.password
+              $Prenom      = $User.Prenom 
+              $ID          = $User.ID
+              $Nom         = $User.Nom
+              $Chemin      = $User.Chemin
+
+# On vérifie si l'utilisateur n'existe pas déjà dans le domaine
+       if ( Get-ADUser -F { SamAccountName -eq $Username }) {
+
+           # On affiche un message 
+          Write-Host -ForegroundColor Green "OHOHO! $Username est deja présent dans l'AD"
+                                                               }
 # instructions quelque soit les choix possibles creation des utilisateur
-       else {
+              else {
 
-              New-ADUser -SamAccountName $Username -UserPrincipalName "$Username@AYOUB.local" -Name "$Prenom $Nom" -GivenName $Prenom -Surname $Nom -Enabled $True -DisplayName "$Nom, $Prenom" -Path $Chemin -AccountPassword (convertto-securestring $Password -AsPlainText -Force)
-}
-	#2eme partie du scripte 4 le trie
-
- $Usercsv  = (Get-ADUser $Username).distinguishedName
-#la variable recuperer les SamAccountName directement sous format cn=Username,ou=informatique,dc=it-connect,dc=local sans ça on obtient une erreur lors du déplacement de l'objet $Username vers un Ou
-
-If ( $ID -le 500 )  {
-        Move-ADObject -Identity  $Usercsv   -TargetPath $OUIT
-}
-		 If ( $ID -ge 501 ) {
-	Move-ADObject -Identity  $Usercsv  -TargetPath $SUPPORT
-
-}
+                     New-ADUser -SamAccountName $Username -UserPrincipalName "$Username@AYOUB.local" -Name "$Prenom $Nom" -GivenName $Prenom -Surname $Nom -Enabled $True -DisplayName "$Nom, $Prenom" -Path $Chemin -AccountPassword (convertto-securestring $Password -AsPlainText -Force)
+                     Write-Host -ForegroundColor Green "$Username il a été créé"
+                     }
+		   
+#la variable  $Usercsv recupere les SamAccountName directement sous format cn=U$sername,ou="spesifier",dc="AYOUB",dc=local sans ça on obtient une erreur lors du déplacement de l'objet $Username vers un Ou
 ```
 
 
