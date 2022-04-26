@@ -10,7 +10,7 @@ Tous les fichiers doivent tous être déposés dans le répertoire suivant ```C:
 
 internet et conseiller pour le script 3, j'installe un gestionnaire de paquets pour Windows ```CHOCO``` et un module complementaire telle que [BurntToast](https://github.com/Windos/BurntToast) pour afficher des notification popup perssonaliser 
 
-# Les etapes à suivre 
+## Les etapes à suivre 
 
 
   :white_check_mark: Avoir internet
@@ -25,14 +25,14 @@ internet et conseiller pour le script 3, j'installe un gestionnaire de paquets p
 
 
 
-  <details><summary>↓⬇️ SPOILEUR MENU ⬇️↓</summary>
+  **<details><summary>↓⬇️ SPOILEUR MENU ⬇️↓</summary>**
 <img src="./spoilermenu.gif" width="whatever" height="whatever" /></details>
 
 # Une partie des script
 
-  <details><summary>↓⬇️ DEVELLOPEZ MOI SVP ⬇️↓</summary>
+  **<details><summary>↓⬇️ DEVELLOPEZ MOI ⬇️↓</summary>**
 
-# Une partie du script 1
+## Une partie du script 1
 ```
 Adresse ip en static
 $ip = "192.168.1.59"
@@ -57,7 +57,7 @@ switch($demande){
 ```
 
 
-# Le script 2
+## Le script 2
 ```
 #mon mots de passe
 $monmdpad = ConvertTo-SecureString -String "Btssio92" -AsPlainText -Force
@@ -87,7 +87,7 @@ Start-Sleep -s 40
 	
 	
 	
-# Une partie du script 3
+## Une partie du script 3
 
 ```
 $parentOU = 'OU=FILLIALE,DC=AYOUB,DC=local'
@@ -108,7 +108,7 @@ else {
 ```
 
 
-# Une partie du script 4 
+## Une partie du script 4 
 
 ``` 
 # instructions quelque soit les choix possibles creation des utilisateur
