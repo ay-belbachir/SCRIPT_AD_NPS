@@ -3,12 +3,12 @@
 
 
   [//]: # (<img src="https://user-images.githubusercontent.com/45585937/52410651-fa95b900-2b13-11e9-970e-eff9afd83b23.png" alt="alt text" width="400" height="whatever">)
+## Information
 
+Script PowerShell permettant d’automatiser plusieurs paramètres comme; attribuer une adresse IP statique, attribué un Hostname, créé un AD et une forêt, installer un DNS, création de OUs, création d’utilisateur à partir d’un fichier .CSV qui doivent être déplacé dans les OUs selon leurs ID présent dans le fichier CSV et instalation
 
-Tous les fichiers doivent tous être déposés dans le répertoire suivant ```C:\Windows\SCRIPT_AYOUB_BELBACHIR``` . Pour une meilleure expérience d’immersion je vous conseille aussi activer le son.
-
-
-internet et conseiller pour le script 3, j'installe un gestionnaire de paquets pour Windows ```CHOCO``` et un module complementaire telle que [BurntToast](https://github.com/Windos/BurntToast) pour afficher des notification popup perssonaliser 
+Le dossier ```SCRIPT_AYOUB_BELBACHIR``` doit être déposés dans le répertoire suivant ```C:\Windows\```. Pour une meilleure expérience d’immersion je vous conseille aussi activer le son.</br>
+internet et conseiller pour le script 2 ou j'installe un gestionnaire de paquets pour Windows ```CHOCO``` et un module complementaire telle que [BurntToast](https://github.com/Windos/BurntToast) pour afficher des notification popup afin perssonaliser 
 
 ## Les etapes à suivre 
 
@@ -17,7 +17,7 @@ internet et conseiller pour le script 3, j'installe un gestionnaire de paquets p
 
   :white_check_mark: Télécharger mon repository
 
-  :white_check_mark: placer le directory ```SCRIPT_AYOUB_BELBACHIR``` dans le chemin suivant:``` C:\Windows\```
+  :white_check_mark: placer le dossier ```SCRIPT_AYOUB_BELBACHIR``` dans le chemin suivant:``` C:\Windows\```
 
   :white_check_mark: Lancer le script ```Menu.ps1``` contenue dans ```C:\Windows\SCRIPT_AYOUB_BELBACHIR.menu.ps1```
 
