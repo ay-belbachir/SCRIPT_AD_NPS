@@ -60,7 +60,7 @@ switch($demande){
 ## Le script 2
 ```
 #mon mots de passe
-$monmdpad = ConvertTo-SecureString -String "Btssio92" -AsPlainText -Force
+$monmdpad = ConvertTo-SecureString -String "mon_mots_de_passe" -AsPlainText -Force
     #bypass securiter pour instalation du module choco et pour burn toast module qui permet la perssonalisation des notifs
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
     #instalation du module BurnToast pour perssonaliser les notif 
