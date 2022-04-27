@@ -24,7 +24,7 @@ switch($demande){
           else {            
              Write-Host  -ForegroundColor Green " le nom de la machine sera $newhostnm après redémarrage"   
                 rename-computer -NewName $newhostnm -Force
-                 Write-Host -ForegroundColor Yellow " l'ordinateur redemarre tout seul dans 15s"
+                 Write-Host -ForegroundColor Yellow " l'ordinateur redémarre tout seul dans 15s"
                  Start-Sleep -s 15 
                     Restart-Computer -Force
                          }
@@ -37,7 +37,7 @@ switch($demande){
         if  ($myhost -ne $defauthostn ) {
                 Write-Host  -ForegroundColor Green " le nom de la machine sera $defauthostn après redémarrage"   
                 rename-computer -NewName $defauthostn -Force
-                Write-Host -ForegroundColor Yellow " l'ordinateur redemarre tout seul dans 30s"
+                Write-Host -ForegroundColor Yellow " l'ordinateur redémarre tout seul dans 30s"
                 Start-Sleep -s 30
                 Restart-Computer -Force
                                                 }
