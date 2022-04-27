@@ -17,7 +17,7 @@ $defauthostn = 'AyoubAD'
 
 switch($demande){
  o {  
-        $newhostnm = Read-Host -Prompt 'saisir un nom pour votre machine '
+        $newhostnm = Read-Host -Prompt 'saisir un Nom d'hôte pour votre machine '
           if ($myhost -eq $newhostnm) {
               Write-Host -ForegroundColor Yellow " $newhostnm est déjà le nom de la machine "            
                                             }
