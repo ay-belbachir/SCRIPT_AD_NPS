@@ -1,4 +1,4 @@
-﻿#!!!!!!!!!!!!! pour que le script s'execute à la perfection veuillez respecter les chemins tout les script et le media dans "C:\Windows\SCRIPT_AYOUB_BELBACHIR\"
+﻿#!!!!!!!!!!!!! pour que le script s'execute à la perfection veuillez respecter les chemins tous les script et le media dans "C:\Windows\SCRIPT_AYOUB_BELBACHIR\"
 $ayoubascii = @"
                             █████╗ ██╗   ██╗ ██████╗ ██╗   ██╗██████╗ 
                            ██╔══██╗╚██╗ ██╔╝██╔═══██╗██║   ██║██╔══██╗
