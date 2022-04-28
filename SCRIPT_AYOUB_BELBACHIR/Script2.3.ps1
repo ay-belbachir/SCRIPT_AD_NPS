@@ -1,6 +1,6 @@
 ﻿#mon mots de passe de la forêt
 $monmdpad = ConvertTo-SecureString -String "Btssio92" -AsPlainText -Force
-    #bypass securiter pour instalation du gestionaire paquets choco et pour burn toast module qui permet la perssonalisation des notifs
+        #bypass sécurité pour installation du module choco et pour BurnToast module qui permet la personnalisation des notifs
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
     #instalation du module BurnToast pour perssonaliser les notif 
 choco install BurntToast-psmodule -y
