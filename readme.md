@@ -28,11 +28,21 @@ internet et conseiller pour le script 2 ou j'installe un gestionnaire de paquets
   **<details><summary>↓⬇️ SPOILEUR MENU ⬇️↓</summary>**
 <img src="./spoilermenu.gif" width="whatever" height="whatever" /></details>
 
-# Une partie des script
+# Une partie des script et description
 
   **<details><summary>↓⬇️ DEVELLOPEZ MOI ⬇️↓</summary>**
 
 ## Une partie du script 1
+
+Le Script 1 permets : 
+	
+−	D’attribuer une adresse IP en statique au serveur 
+	
+−	De demander à l’utilisateur de saisir un hostname pour le serveur si non le hostname par défauts seras sélectionner pour renommer le serveur 
+	
+−	Le script vérifié si le hostname saisie est déjà le nom du serveur si c’est le cas l’ordinateur de ne redémarrera pas par ce que s’est inutile
+
+	
 ```
 #Adresse ip en static
 $ip = "192.168.2.2"
@@ -54,9 +64,23 @@ $defauthostn = 'AyoubAD'
 
 
 ## Le script 2
+	
+Le Script 2 permets :
+	
+−	Installer l’active directory 
+	
+−	Installer le serveur NPS (RADIUS) pour notre futur portail captif
+	
+−	Installer le module BurntToast qui permets d’affiche une notification a la fin de l’exécution des scripts 2, 3 et 4.
+	
+−	Installation du gestionnaire de paquet CHOCO nécessaire pur l’installation de BurntToast
+	
+−	Créer une forêt pour L’Active Directory
+
+
 ```
 #mon mots de passe de la forêt
-$monmdpad = ConvertTo-SecureString -String "Btssio92" -AsPlainText -Force
+$monmdpad = ConvertTo-SecureString -String "mots_de_passe" -AsPlainText -Force
     #bypass securiter pour instalation du gestionaire paquets choco et pour burn toast module qui permet la perssonalisation des notifs
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
     #instalation du module BurnToast pour perssonaliser les notif 
@@ -89,6 +113,17 @@ Start-Sleep -s 40
 	
 	
 ## Une partie du script 3
+	
+Le Script 3 permets :
+	
+−	De Vérifier si les OUs de l’Arborescence existe 
+	
+−	De Vérifier si le groupe en relation avec notre portail captif existe 
+	
+−	De créer le groupe en relation avec notre portail
+	
+−	De créer s’est OUs s’ils n’existent pas 
+
 
 ```
 $parentOU = 'OU=Departement Quantique,DC=AYOUB,DC=local'
@@ -122,7 +157,20 @@ if([ADSI]::Exists("LDAP://$parentOU")) {
 
 
 ## Une partie du script 4 
+	
+Le Script 4 permets :
+	
+−	De créer des utilisateurs depuis un fichier csv s’il n’existe pas
+	
+−	D’attribuer des mots de passe à ces derniers 
+	
+−	De triés l’emplacement des utilisateurs selon leurs ID 
+	
+−	De leur permet aux utilisateurs d’accéder au wifi selon leur ID
+	
+−	D’assigner le groupe "portail captif" aux utilisateurs ayant droits 
 
+	
 ``` 
 # Boucle foreach contenant le csv et son contenu
        foreach ($User in $ecchi)
@@ -149,8 +197,44 @@ if([ADSI]::Exists("LDAP://$parentOU")) {
 		   
 #la variable  $Usercsv recupere les SamAccountName directement sous format cn=U$sername,ou="spesifier",dc="AYOUB",dc=local sans ça on obtient une erreur lors du déplacement de l'objet $Username vers un Ou
 ```
+	
+Le Script Menu permet :
+	
+−	De sélectionner les scripts à exécuter dans l’ordre
+	
+−	De jouer un son lors du lancement d’un script pour améliorer l’immersion de l’utilisateur 
+	
+−	De faire gagner su temps pour permets d’automatiser les déploiements des paramètres rechercher 
 
 
+## Une partie du script Menus
+	
+```
+	 4{
+   Write-Host "Création des utilisateurs et déplacements de de ceux-là selon leurs ID"
+   $PlayWav.playsync()
+	C:\Windows\SCRIPT_AYOUB_BELBACHIR\Script4.ps1
+   Read-Host -Prompt "Appuyer sur une touche une fois la lecture terminée"
+      Clear
+      PowerShell -NoExit $menups1
+            } 
+
+    0{
+       $PlayWav.playsync()
+      Stop-Process -Name PowerShell
+            }
+
+
+   default{ Write-Host -ForegroundColor RED "$choix ne correspond pas au choix possible"
+      Read-Host -Prompt "appuyez sur n'importe qu'elle touche pour réessayer "
+      Clear
+      PowerShell -NoExit $menups1
+                }
+
+}
+```
+	
+	
 ```
 		                       __       __  ________  _______    ______   ______ 
 		                      |  \     /  \|        \|       \  /      \ |      \
